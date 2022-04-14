@@ -1,38 +1,12 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { Contact, ContactResponse, Items } from './components/Contacts/Contact';
 import Tabs from './components/Tabs';
-import { groupByAlphabet, IContact, Items, ROOT_URL } from './utils';
+import { groupByAlphabet, ROOT_URL } from './utils';
 
 const Container = styled.div`
   padding: 1rem;
 `;
-
-interface IUser {
-  gender: string;
-  name: { first: string; last: string; title: string };
-  location: {
-    street: { number: number; name: string };
-    city: string;
-    state: string;
-    country: string;
-    postcode: number;
-    coordinates: object;
-    timezone: object;
-  };
-  email: string;
-  login: object;
-  dob: object;
-  registered: object;
-  phone: string;
-  cell: string;
-  id: { name: string; value: string };
-  picture: {
-    large: string;
-    medium: string;
-    thumbnail: string;
-  };
-  nat: string;
-}
 
 function App() {
   const [items, setItems] = useState<Items>();
@@ -48,14 +22,15 @@ function App() {
         if (!results) {
           return;
         }
-        let contacts: IContact[] = results.map(
+        let contacts: Contact[] = results.map(
           ({
             id: { value },
             name: { first, last },
             location: { street, city, state, postcode },
             picture: { thumbnail },
             phone,
-          }: IUser): IContact => ({
+            login,
+          }: ContactResponse): Contact => ({
             id: value,
             firstName: first,
             lastName: last,
@@ -65,6 +40,7 @@ function App() {
             state,
             postcode,
             picture: thumbnail,
+            username: login.username,
           })
         );
         setItems(groupByAlphabet(contacts));

@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import { IContact } from '../../../utils';
+import { Contact } from '../Contact';
 import ContactList from '../ContactList';
-const contacts: IContact[] = [
+const contacts: Contact[] = [
   {
     id: '12380',
     firstName: 'Adriana',
@@ -12,6 +12,7 @@ const contacts: IContact[] = [
     state: 'Texas',
     postcode: 112332122,
     picture: '',
+    username: '',
   },
   {
     id: '90809',
@@ -23,6 +24,7 @@ const contacts: IContact[] = [
     state: 'Texas',
     postcode: 19083221,
     picture: '',
+    username: '',
   },
   {
     id: '34380',
@@ -34,6 +36,7 @@ const contacts: IContact[] = [
     state: 'Texas',
     postcode: 112332122,
     picture: '',
+    username: '',
   },
   {
     id: '93422',
@@ -45,6 +48,7 @@ const contacts: IContact[] = [
     state: 'Texas',
     postcode: 19083221,
     picture: '',
+    username: '',
   },
 ];
 

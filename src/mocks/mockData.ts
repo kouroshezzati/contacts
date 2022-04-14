@@ -1,4 +1,4 @@
-import { Items } from '../utils';
+import { Items } from '../components/Contacts/Contact';
 
 export const mockedContactsResponse = {
   results: [
@@ -194,6 +194,7 @@ export const mockedItems: Items = {
       state: 'Texas',
       postcode: 112332122,
       picture: '',
+      username: '',
     },
     {
       id: '90809',
@@ -205,6 +206,7 @@ export const mockedItems: Items = {
       state: 'Texas',
       postcode: 19083221,
       picture: '',
+      username: '',
     },
   ],
   b: [
@@ -218,6 +220,7 @@ export const mockedItems: Items = {
       state: 'Texas',
       postcode: 19083221,
       picture: '',
+      username: '',
     },
   ],
   c: [],

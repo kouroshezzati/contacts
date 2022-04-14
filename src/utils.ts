@@ -1,24 +1,10 @@
-export interface Items {
-  [key: string]: IContact[];
-}
+import { Contact, Items } from './components/Contacts/Contact';
 
 export function cb(...args: any[]) {
   return args.filter(Boolean).join(' ');
 }
 
-export interface IContact {
-  id: string;
-  firstName: string;
-  lastName: string;
-  phone: string;
-  street: string;
-  city: string;
-  state: string;
-  postcode: number;
-  picture: string;
-}
-
-export function groupByAlphabet(contacts: IContact[]): Items {
+export function groupByAlphabet(contacts: Contact[]): Items  {
   let _items: Items = {};
   'abcdefghijklmnopqrstuvwxyz'.split('').forEach((alphabet: string) => {
     _items[alphabet] = [];

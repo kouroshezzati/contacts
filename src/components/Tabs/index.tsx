@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { cb, Items } from '../../utils';
+import { cb } from '../../utils';
+import { Items } from '../Contacts/Contact';
 import ContactList from '../Contacts/ContactList';
 
 const Container = styled.div`

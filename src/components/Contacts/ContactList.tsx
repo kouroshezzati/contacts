@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { IContact } from '../../utils';
+import { Contact } from './Contact';
 
 const Container = styled.div`
   display: grid;
@@ -13,7 +13,7 @@ const Container = styled.div`
   }
 `;
 
-export default function ContactList({ contacts }: { contacts: IContact[] }) {
+export default function ContactList({ contacts }: { contacts: Contact[] }) {
   if (contacts.length === 0) {
     return null;
   }
