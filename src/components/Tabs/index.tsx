@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { IContact } from '../../utils';
-import { cb } from '../../utils';
+import { cb, Items } from '../../utils';
+import ContactList from '../Contacts/ContactList';
 
 const Container = styled.div`
   overflow: hidden;
@@ -47,16 +47,12 @@ const Container = styled.div`
   }
 
   .content-container {
-    padding: 6px 12px;
+    padding: 1.5rem;
     border: 1px solid #ccc;
     border-top: none;
     background-color: #f1f1f1;
   }
 `;
-
-export interface Items {
-  [key: string]: IContact[];
-}
 
 export default function Tabs({ items }: { items: Items }) {
   const keys = Object.keys(items);
@@ -75,39 +71,9 @@ export default function Tabs({ items }: { items: Items }) {
         ))}
       </div>
       <div className='content-container'>
-        {items[title].map((entity) => (
-          <Contact
-            firstName={entity.firstName}
-            lastName={entity.lastName}
-            key={title + entity.id}
-          />
-        ))}
+        <ContactList contacts={items[title]} key={title} />
       </div>
     </Container>
-  );
-}
-
-function Contact({
-  firstName,
-  lastName,
-}: {
-  firstName: string;
-  lastName: string;
-}) {
-  return <ContactRow firstName={firstName} lastName={lastName} />;
-}
-
-function ContactRow({
-  firstName,
-  lastName,
-}: {
-  firstName: string;
-  lastName: string;
-}) {
-  return (
-    <div>
-      <span>{firstName}</span> <span>{lastName}</span>
-    </div>
   );
 }
 
