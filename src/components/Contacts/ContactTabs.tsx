@@ -1,8 +1,6 @@
-import { useState } from 'react';
 import styled from 'styled-components';
-import { cb } from '../../utils';
-import { Items } from '../Contacts/Contact';
-import ContactList from '../Contacts/ContactList';
+import { cb } from '../../utils/utils';
+import { Items } from './Contact';
 
 const Container = styled.div`
   overflow: hidden;
@@ -10,19 +8,16 @@ const Container = styled.div`
   flex-direction: column;
 
   .tab {
-    background-color: inherit;
     float: left;
-    border: none;
     outline: none;
     cursor: pointer;
-    padding: 0px 4px;
+    padding: 0 4px;
     transition: 0.3s;
     font-size: 1.2rem;
     font-weight: 700;
     border-top-left-radius: 9px;
     border-top-right-radius: 9px;
     border: 1px solid #c6c6c6;
-    border-bottom: unset;
     background-color: #f1f1f1;
     sub {
       font-size: 0.6rem;
@@ -40,6 +35,7 @@ const Container = styled.div`
 
     &.active {
       background-image: linear-gradient(#c0c0c0 10%, transparent 40%);
+      border-bottom: 1px solid var(--background-color);
     }
 
     &.disabled {
@@ -55,9 +51,18 @@ const Container = styled.div`
   }
 `;
 
-export default function Tabs({ items }: { items: Items }) {
+export default function ContactTabs({
+  items,
+  currentTab,
+  onTabClick,
+  children,
+}: {
+  items: Items;
+  currentTab: string;
+  onTabClick: (title: string) => void;
+  children: React.ReactNode;
+}) {
   const keys = Object.keys(items);
-  const [title, setTitle] = useState<string>(keys[0]);
   return (
     <Container>
       <div className='tabs'>
@@ -65,15 +70,13 @@ export default function Tabs({ items }: { items: Items }) {
           <Tab
             key={item}
             title={item}
-            active={keys.indexOf(title) === index}
+            active={keys.indexOf(currentTab) === index}
             number={items[item].length}
-            onClick={(title: string) => setTitle(title)}
+            onClick={(title: string) => onTabClick(title)}
           />
         ))}
       </div>
-      <div className='content-container'>
-        <ContactList contacts={items[title]} key={title} />
-      </div>
+      <div className='content-container'>{children}</div>
     </Container>
   );
 }

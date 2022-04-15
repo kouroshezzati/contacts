@@ -1,10 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createGlobalStyle } from 'styled-components';
-import './index.css';
 import App from './App';
 
 const GlobalStyle = createGlobalStyle`
+  :root{
+    --border-color: #ccc;
+    --background-color: #f1f1f1;
+  }
   * {
     padding: 0;
     box-sizing: border-box;
